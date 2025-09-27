@@ -34,6 +34,33 @@ RULE:
 
 function minDistanceBetweenGreatest(arr) {
   // your code here
+  let result = 0;
+
+  // tentukan angka terbesarnya terlebih dahulu
+  let angkaTerbesar = null;
+  for (let i = 0; i < arr.length; i++) {
+    if (!angkaTerbesar) {angkaTerbesar = angkaTerbesar = arr[i]; continue;}
+    if (angkaTerbesar < arr[i]) angkaTerbesar = arr[i];
+  }
+
+  // kumpulkan 
+  const urutanIndexAngkaTerbesar = [];
+  for (let g = 0; g < arr.length; g++) {
+    if (arr[g] === angkaTerbesar) urutanIndexAngkaTerbesar.push(g);
+  }
+
+  let minDistance = 0;
+  for (let j = 0; j < urutanIndexAngkaTerbesar.length; j++) {
+    // jika sudah diujung maka stop perulangannya
+    if (j === (urutanIndexAngkaTerbesar.length - 1)) break;
+    
+    let jarak = Math.abs(urutanIndexAngkaTerbesar[j] - (urutanIndexAngkaTerbesar[j + 1]));
+    if (!minDistance) {minDistance = jarak; continue;}
+    if (minDistance > jarak) {minDistance = jarak;}
+  }
+  result = minDistance;
+  
+  return result;
 }
 
 console.log(minDistanceBetweenGreatest([3, 5, 2, 3, 5, 3, 5])); //2

@@ -53,7 +53,6 @@ function squareNumber(num) {
 
   // buat variabel penampung baris dan kolom
   const map = [];
-  const map_angka = [];
   
   // tentukan angka permulaan kolom
   let awalan = 1;
@@ -63,20 +62,19 @@ function squareNumber(num) {
   for (let i = 1; i <= num; i++) {
     // buat variabel baris untuk menampung kolom
     const baris = [];
-    const baris_angka = [];
 
     // buat perulangan untuk merancang kolom
     for (let j = awalan; j <= akhiran; j++) {
       // masukkan kolom ke baris
 
       // kalo j itu kelipatan 4 maka ganti jadi karakter '#'
-      if (j % 4 === 0) {baris.push("#"); baris_angka.push(j);}
+      if (j % 4 === 0) baris.push("#");
       
       // kalo j itu genap maka ganti jadi karakter 'o'
-      else if (j % 2 === 0) {baris.push("o"); baris_angka.push(j);}
+      else if (j % 2 === 0) baris.push("o");
       
       // kalo j itu ganjil maka ganti jadi karakter 'x'
-      else if (j % 2 === 1) {baris.push("x"); baris_angka.push(j);}
+      else if (j % 2 === 1) baris.push("x");
       
       // jika berada di akhir perulangan ganti awalan jadi angka terakhir di kolom baris ke i
       if (j === (akhiran - 1)) {
@@ -88,26 +86,19 @@ function squareNumber(num) {
     }
 
     // kalo baris ganjil maka push baris ke map seperti biasa
-    if (i % 2 === 1) {map.push(baris); map_angka.push(baris_angka)}
+    if (i % 2 === 1) map.push(baris);
     
     // kalo baris genap maka reverse dulu baris-nya baru push ke map
-    else if (i % 2 === 0) {map.push(baris.reverse()); map_angka.push(baris_angka.reverse())}
+    else if (i % 2 === 0) map.push(baris.reverse());
   }
-
-
-  // liat apa isi dari map
-  // console.log({map});
-
-  // keperluan debugging
-  console.log(map_angka);
 
   return map;
 }
 
-// console.log(squareNumber(3));
+console.log(squareNumber(3));
 // [ [x, o, x],  [o, x, #], [x, #, x] ]
 
-// console.log(squareNumber(4));
+console.log(squareNumber(4));
 // [ [ x, o, x, # ],
 //   [ #, x, o, x ],
 //   [ x, o, x, # ],
@@ -122,4 +113,4 @@ console.log(squareNumber(5));
 //   [ x, o, x, #, x ] 
 // ]
 
-// console.log(squareNumber(2)); // Minimal input adalah 3
+console.log(squareNumber(2)); // Minimal input adalah 3
